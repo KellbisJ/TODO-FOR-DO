@@ -1,0 +1,171 @@
+h1 {
+	font-size: 28px;
+	/* color: #219c90; */
+	color: #06e899;
+	text-align: center;
+	margin-top: 12px;
+	padding: 0 10px;
+	font-family: 'Kode Mono', monospace;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	letter-spacing: 2px;
+}
+h2 {
+	font-size: 18px;
+	/* color: #219c90; */
+	color: #06e899;
+	text-align: center;
+	margin-top: 12px;
+	padding: 0 10px;
+	font-family: 'Kode Mono', monospace;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	letter-spacing: 2px;
+}
+
+li {
+	list-style-type: none;
+}
+span {
+	cursor: pointer;
+}
+div.TodoSystem {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	width: 90%;
+	padding: 20px 0px 20px 0px;
+	margin: auto;
+	background-color: #1e2229;
+	border-radius: 24px;
+	position: relative;
+}
+p {
+	color: aliceblue;
+	font-size: 18px;
+	font-weight: bold;
+}
+div.TodoInfoAndSearch {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 78%;
+	height: auto;
+}
+input.TodoSearch {
+	width: 100%;
+	border: none;
+	background-color: #282c34;
+	color: aliceblue;
+	font-size: 18px;
+	padding: 10px 20px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	outline: none;
+	box-shadow: none;
+}
+input.Something::placeholder {
+	color: #999999;
+}
+button.Clarity {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 50%;
+	outline: none;
+	box-shadow: none;
+	border: none;
+	background-color: #000000;
+	color: #fff;
+}
+button.Clarity:hover {
+	background-color: #fff;
+	color: #1e2229;
+}
+ul.TodoList {
+	display: flex;
+	flex-direction: column;
+	width: 84%;
+	height: auto;
+	padding: 0;
+	align-items: center;
+}
+li.TodoItem {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	border-bottom: 1px solid #333333;
+	border-radius: 10px;
+	background-color: #282c34;
+	color: #ffffff;
+	font-size: 18px;
+	position: relative;
+	width: inherit;
+	margin: 5px;
+}
+button.AddTodo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* position: absolute; */
+	/* bottom: 10px;
+	right: 10px; */
+	background-color: #eb3678;
+	border: none;
+	color: white;
+	width: 50px;
+	height: 50px;
+	/* width: 50px;
+	height: 50px; */
+	line-height: 50px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 24px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	border-radius: 50%;
+}
+/* #1e2229 */
+@media (max-width: 440px) {
+	h1 {
+		font-size: 18px;
+	}
+	h2 {
+		font-size: 14px;
+	}
+	input.Something {
+		font-size: 14px;
+	}
+	p {
+		font-size: 12px;
+	}
+	button.Clarity {
+		width: 20px;
+		height: 20px;
+		font-size: 12px;
+	}
+	li.TodoItem {
+		font-size: 16px;
+		height: 20px;
+	}
+	button.AddTodo {
+		width: 40px;
+		height: 40px;
+		font-size: 16px;
+	}
+}
