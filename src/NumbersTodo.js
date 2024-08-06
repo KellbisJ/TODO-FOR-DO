@@ -1,7 +1,7 @@
-function NumbersTodo({ total, completed }) {
+function NumbersTodo({ completed, total }) {
 	return (
 		<h2>
-			Completaste {total} de {completed} tareas
+			Completaste {completed} de {total} tareas
 		</h2>
 	);
 }

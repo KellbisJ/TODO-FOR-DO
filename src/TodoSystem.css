@@ -31,6 +31,13 @@ li {
 span {
 	cursor: pointer;
 }
+.lightMode {
+	background-color: #f5f5f5;
+}
+.completed {
+	text-decoration: line-through;
+	color: #a3a9a3;
+}
 div.TodoSystem {
 	display: flex;
 	justify-content: center;
@@ -118,6 +125,27 @@ li.TodoItem {
 	width: inherit;
 	margin: 5px;
 }
+span.todoSuccess {
+	transition: box-shadow 0.3s ease-in-out;
+}
+span.todoSuccess:hover {
+	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+span.todoSuccess:active {
+	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+span.todoConclude {
+	transition: box-shadow 0.3s ease-in-out;
+}
+span.todoConclude:hover {
+	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+span.todoConclude:active {
+	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
 button.AddTodo {
 	display: flex;
 	justify-content: center;

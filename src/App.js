@@ -10,23 +10,33 @@ import { TodoItem } from './TodoItem';
 import { CreateTodoBtn } from './CreateTodoBtn';
 
 const defaultTodos = [
-	{ text: 'Cortar cebolla', completed: false },
-	{ text: 'Algo', completed: true },
-	{ text: 'Otra cosa', completed: false },
+	{ text: 'Organizar el cuarto', completed: false },
+	{ text: 'Estudiar programacion', completed: true },
+	{ text: 'Estudiar ingles', completed: false },
+	{ text: 'Hackear la nasa', completed: true },
 ];
-// Ahora quiero crear un componente que sea TodoInfoAndSearch para que contenga al NumbersTodo por y al TodoSearch, y que este componente se encuentre dentro del TodoSystem
+
 function App() {
+	const [todos, setTodos] = React.useState(defaultTodos);
+	const [searchValue, setSearchValue] = React.useState('');
+	const [lightMode, setLightMode] = React.useState(false);
+
+	const completedTodos = todos.filter((todo) => !!todo.completed).length;
+	const totalTodos = todos.length;
+
+	// console.log('Los usuarios buscan todos: ' + searchValue);
+	console.log('cambiamos a de modo de color ' + lightMode);
 	return (
 		<>
 			<TodoForDo />
 
 			<TodoSystem>
 				<TodoInfoAndSearch>
-					<NumbersTodo completed={16} total={25} />
-					<TodoSearch />
+					<NumbersTodo completed={completedTodos} total={totalTodos} />
+					<TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 				</TodoInfoAndSearch>
 
-				<DarkOrLightMode />
+				<DarkOrLightMode lightMode={lightMode} setLightMode={setLightMode} />
 				<TodoList>
 					{defaultTodos.map((todo) => (
 						<TodoItem key={todo.text} text={todo.text} completed={todo.completed} />
