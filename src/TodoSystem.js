@@ -1,7 +1,7 @@
 import './TodoSystem.css';
 
-function TodoSystem({ children }) {
-	return <div className="TodoSystem">{children}</div>;
+function TodoSystem({ children, lightMode }) {
+	return <div className={`TodoSystem ${lightMode ? 'TodoSystemLight' : ''}`}>{children}</div>;
 }
 
 export { TodoSystem };

@@ -13,7 +13,7 @@ function DarkOrLightMode({ lightMode, setLightMode }) {
 	});
 	return (
 		<button
-			className="Clarity"
+			className={`ToggleTheme ${lightMode ? 'lightToggle' : 'darkToggle'}`}
 			onClick={(e) => {
 				e.preventDefault();
 				setLightMode(!lightMode);

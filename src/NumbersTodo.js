@@ -1,10 +1,10 @@
-function NumbersTodo({ completed, total }) {
-	return <h2>{verifyCompleted(completed, total)}</h2>;
+function NumbersTodo({ completed, total, lightMode }) {
+	return <h2 className={`NumbersTodo ${lightMode ? 'NumbersTodoLight' : ''}`}>{verifyCompleted(completed, total)}</h2>;
 }
 
 function verifyCompleted(completed, total) {
 	if (completed === 0 && total === 0) {
-		return 'No has completado ninguna tarea aún. Crea una tarea y empieza ahora.';
+		return 'No has creado ninguna tarea aún. Crea una tarea y empieza ahora.';
 	} else if (completed === total) {
 		return '¡Felicitaciones! Completaste todas tus tareas.';
 	} else {

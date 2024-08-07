@@ -1,5 +1,5 @@
-function TodoForDo() {
-	return <h1>To do \-/ For do</h1>;
+function TodoForDo({ lightMode }) {
+	return <h1 className={`TodoForDoDark ${lightMode ? 'TodoForDoLight' : ''}`}>To do \-/ For do</h1>;
 }
 
 export { TodoForDo };

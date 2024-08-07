@@ -36,6 +36,12 @@ function App() {
 		newTodos[todoIndex].completed = true;
 		setTodos(newTodos);
 	};
+	const todoUncheck = (text) => {
+		const newTodos = [...todos];
+		const todoIndex = newTodos.findIndex((todo) => todo.text === text);
+		newTodos[todoIndex].completed = false;
+		setTodos(newTodos);
+	};
 	const todoDelete = (text) => {
 		const newTodos = [...todos];
 		const todoIndex = newTodos.findIndex((todo) => todo.text === text);
@@ -47,32 +53,38 @@ function App() {
 	// console.log('cambiamos a de modo de color ' + lightMode);
 	return (
 		<>
-			<TodoForDo />
+			<TodoForDo lightMode={lightMode} />
 
-			<TodoSystem>
+			<TodoSystem lightMode={lightMode}>
 				<TodoInfoAndSearch>
-					<NumbersTodo completed={completedTodos} total={totalTodos} />
-					<TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+					<NumbersTodo completed={completedTodos} total={totalTodos} lightMode={lightMode} />
+					<TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} lightMode={lightMode} />
 				</TodoInfoAndSearch>
 
 				<DarkOrLightMode lightMode={lightMode} setLightMode={setLightMode} />
-				<TodoList>
+				<TodoList lightMode={lightMode}>
 					{searchedTodos.map((todo) => (
 						<TodoItem
 							key={todo.text}
 							text={todo.text}
 							completed={todo.completed}
 							onComplete={() => {
-								todoDone(todo.text); // falta logica de que al hacer click nuevamente se desmarque el texto y sea un no completado
+								// falta logica de que al hacer click nuevamente se desmarque el texto y sea un no completado
+								if (todo.completed === true) {
+									todoUncheck(todo.text);
+								} else {
+									todoDone(todo.text);
+								}
 							}}
 							onDelete={() => {
 								todoDelete(todo.text);
 							}}
+							lightMode={lightMode}
 						/>
 					))}
 				</TodoList>
 
-				<CreateTodoBtn />
+				<CreateTodoBtn lightMode={lightMode} />
 			</TodoSystem>
 		</>
 	);

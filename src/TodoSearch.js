@@ -1,8 +1,8 @@
 import React from 'react';
-function TodoSearch({ searchValue, setSearchValue }) {
+function TodoSearch({ searchValue, setSearchValue, lightMode }) {
 	return (
 		<input
-			className="TodoSearch"
+			className={`TodoSearch ${lightMode ? 'TodoSearchLight' : ''}`}
 			placeholder="Study"
 			value={searchValue}
 			onChange={(e) => {
