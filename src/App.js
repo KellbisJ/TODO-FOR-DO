@@ -9,65 +9,75 @@ import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoBtn } from './CreateTodoBtn';
 
-const defaultTodos = [
-	{ text: 'Organizar el cuarto', completed: false },
-	{ text: 'Estudiar programacion', completed: true },
-	{ text: 'Estudiar ingles', completed: false },
-	{ text: 'Hackear la nasa', completed: true },
-];
+// const defaultTodos = [
+// 	{ text: 'Organizar el cuarto', completed: false },
+// 	{ text: 'Estudiar programacion', completed: true },
+// 	{ text: 'Estudiar ingles', completed: false },
+// 	{ text: 'Hackear la nasa', completed: true },
+// ];
 
 // localStorage.removeItem('TODOS_FOR_DO1');
 
-function App() {
-	const localStorageTodos = localStorage.getItem('TODOS_FOR_DO1');
-	const stringifiedTodos = JSON.stringify(defaultTodos) || [];
-	const setTodosInLocalStorage = () => localStorage.setItem('TODOS_FOR_DO1', stringifiedTodos);
+function useLocalStorage(itemName, initialValue) {
+	const todoItem = localStorage.getItem(itemName);
+	const stringifiedTodos = JSON.stringify(todoItem) || initialValue;
+	const parsedItemTodos = JSON.parse(todoItem) || initialValue;
+	const setItemTodo = () => localStorage.setItem(itemName, stringifiedTodos);
 
-	if (!localStorageTodos) {
-		setTodosInLocalStorage();
+	if (!todoItem) {
+		setItemTodo(parsedItemTodos);
 	}
 
-	const parsedTodos = JSON.parse(localStorageTodos) || [];
+	const [item, setItem] = React.useState(parsedItemTodos);
+
+	const saveItemTodos = (newItem) => {
+		const stringifiedTodos2 = JSON.stringify(newItem);
+		localStorage.setItem(itemName, stringifiedTodos2);
+
+		setItem(newItem);
+	};
+	return [item, saveItemTodos];
+}
+
+function App() {
+	const [todos, saveTodos] = useLocalStorage('TODOS_FOR_DO1', []);
+	const [searchValue, setSearchValue] = React.useState('');
 
 	const saveThemeInLocalStorage = (lightMode) => localStorage.setItem('LIGHT_MODE', lightMode);
 	const getThemeFromLocalStorage = () => localStorage.getItem('LIGHT_MODE') === 'true' || false;
 
-	const [todos, setTodos] = React.useState(parsedTodos);
-	const [searchValue, setSearchValue] = React.useState('');
 	const [lightMode, setLightMode] = React.useState(getThemeFromLocalStorage);
 
-	const completedTodos = todos.filter((todo) => !!todo.completed).length;
-	const totalTodos = todos.length;
+	const completedTodos = todos ? todos.filter((todo) => !!todo.completed).length : 0;
 
-	const searchedTodos = todos.filter((todo) => {
-		const todoText = todo.text.toLowerCase();
-		const searchText = searchValue.toLowerCase();
-		return todoText.includes(searchText);
-	});
+	const totalTodos = todos ? todos.length : 0;
+
+	const searchedTodos = Array.isArray(todos)
+		? todos.filter((todo) => {
+				const todoText = todo.text.toLowerCase();
+				const searchText = searchValue.toLowerCase();
+				return todoText.includes(searchText);
+		  })
+		: [];
 
 	const todoDone = (text) => {
 		const newTodos = [...todos];
 		const todoIndex = newTodos.findIndex((todo) => todo.text === text);
 		newTodos[todoIndex].completed = true;
-		saveTodosInLocalStorage(newTodos);
+		saveTodos(newTodos);
 	};
-	const saveTodosInLocalStorage = (newTodos) => {
-		const stringifiedTodos2 = JSON.stringify(newTodos);
-		localStorage.setItem('TODOS_FOR_DO1', stringifiedTodos2);
 
-		setTodos(newTodos);
-	};
 	const todoUncheck = (text) => {
 		const newTodos = [...todos];
 		const todoIndex = newTodos.findIndex((todo) => todo.text === text);
 		newTodos[todoIndex].completed = false;
-		saveTodosInLocalStorage(newTodos);
+		saveTodos(newTodos);
 	};
 	const todoDelete = (text) => {
 		const newTodos = [...todos];
 		const todoIndex = newTodos.findIndex((todo) => todo.text === text);
 		newTodos.splice(todoIndex, 1);
-		saveTodosInLocalStorage(newTodos);
+		saveTodos(newTodos);
 	};
 	const handleLightMode = (newLightMode) => {
 		saveThemeInLocalStorage(newLightMode);
