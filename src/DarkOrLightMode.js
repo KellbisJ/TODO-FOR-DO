@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function DarkOrLightMode({ lightMode, setLightMode }) {
+function DarkOrLightMode({ lightMode, handleLightMode }) {
 	useEffect(() => {
 		const body = document.body;
 		if (lightMode) {
@@ -16,7 +16,7 @@ function DarkOrLightMode({ lightMode, setLightMode }) {
 			className={`ToggleTheme ${lightMode ? 'lightToggle' : 'darkToggle'}`}
 			onClick={(e) => {
 				e.preventDefault();
-				setLightMode(!lightMode);
+				handleLightMode(!lightMode);
 			}}>
 			{lightMode ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />}
 		</button>
