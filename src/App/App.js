@@ -12,7 +12,8 @@ import { useLocalStorageForSaveTodos } from './useLocalStorageForSaveTodos';
 // localStorage.removeItem('TODOS_FOR_DO1');
 
 function App() {
-	const [todos, saveTodos] = useLocalStorageForSaveTodos('TODOS_FOR_DO1', []);
+	const { item: todos, saveItemTodos: saveTodos, loading, error } = useLocalStorageForSaveTodos('TODOS_FOR_DO1', []);
+	console.log(todos);
 	const [searchValue, setSearchValue] = React.useState('');
 
 	const saveThemeInLocalStorage = (lightMode) => localStorage.setItem('LIGHT_MODE', lightMode);
@@ -57,6 +58,8 @@ function App() {
 	};
 	return (
 		<AppUI
+			loading={loading}
+			error={error}
 			completedTodos={completedTodos}
 			totalTodos={totalTodos}
 			lightMode={lightMode}

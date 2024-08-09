@@ -10,6 +10,8 @@ import { TodoItem } from '../TodoList/TodoItem';
 import { CreateTodoBtn } from '../CreateTodoBtn/CreateTodoBtn';
 
 function AppUI({
+	loading,
+	error,
 	completedTodos,
 	totalTodos,
 	lightMode,
@@ -33,13 +35,15 @@ function AppUI({
 
 				<DarkOrLightMode lightMode={lightMode} handleLightMode={handleLightMode} />
 				<TodoList lightMode={lightMode}>
+					{loading && <p style={{ color: lightMode ? '#282c34' : '#fff' }}>loading...</p>}
+					{error && <p>An error ocurred...</p>}
+					{!loading && !error && searchedTodos.length === 0 && <p>You need to create your first Todo!</p>}
 					{searchedTodos.map((todo) => (
 						<TodoItem
 							key={todo.text}
 							text={todo.text}
 							completed={todo.completed}
 							onComplete={() => {
-								// falta logica de que al hacer click nuevamente se desmarque el texto y sea un no completado
 								if (todo.completed === true) {
 									todoUncheck(todo.text);
 								} else {
@@ -53,7 +57,6 @@ function AppUI({
 						/>
 					))}
 				</TodoList>
-
 				<CreateTodoBtn />
 			</TodoSystem>
 		</>
