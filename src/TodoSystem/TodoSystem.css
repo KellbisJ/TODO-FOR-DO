@@ -33,7 +33,6 @@ h2 {
 p {
 	color: aliceblue;
 	font-size: 18px;
-	font-weight: bold;
 }
 .NumbersTodo {
 	color: #06e899;
@@ -41,6 +40,9 @@ p {
 	margin: 4px 0px 4px 0px;
 	width: 78%;
 	height: 80px;
+	box-sizing: border-box;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 .NumbersTodoLight {
 	color: #000000;
@@ -150,10 +152,7 @@ ul.TodoList {
 	padding: 0;
 	align-items: center;
 }
-li.TodoItem {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+li {
 	padding: 10px 20px;
 	border-radius: 10px;
 	background-color: #282c34;
@@ -162,12 +161,30 @@ li.TodoItem {
 	position: relative;
 	width: inherit;
 	margin: 5px;
-	width: 100%;
+	overflow: hidden;
 	box-sizing: border-box;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+li.TodoItem {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	border: none;
+}
+li.TodoItemLoading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	width: 100%;
+	height: 80px;
+	background-color: #282c34;
 }
 li.TodoItemLight {
 	background-color: #ffffff;
-	border: none;
 }
 span.todoSuccess {
 	transition: box-shadow 0.3s ease-in-out;
@@ -175,16 +192,33 @@ span.todoSuccess {
 span.todoSuccess:hover {
 	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
 }
-.todoText {
-	color: aliceblue;
-}
-.todoTextLight {
-	color: #282c34;
-}
-
 span.todoSuccess:active {
 	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
 }
+span.todoSuccessLoading {
+	display: block;
+	width: 20px;
+	height: 20px;
+	display: block;
+	background-color: #1e2229;
+	border-radius: 20%;
+}
+span.todoSuccessLoadingLight {
+	background-color: #cfd1d4;
+}
+
+p.todoText {
+	color: aliceblue;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-wrap: balance;
+}
+p.todoTextLight {
+	color: #282c34;
+}
+
 span.todoConclude {
 	transition: box-shadow 0.3s ease-in-out;
 }
@@ -194,6 +228,16 @@ span.todoConclude:hover {
 
 span.todoConclude:active {
 	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+span.todoConcludeLoading {
+	width: 20px;
+	height: 20px;
+	display: block;
+	background-color: #1e2229;
+	border-radius: 20%;
+}
+span.todoConcludeLoadingLight {
+	background-color: #cfd1d4;
 }
 
 button.AddTodo {
@@ -229,21 +273,27 @@ button.AddTodo {
 	input.Something {
 		font-size: 14px;
 	}
+	input.TodoSearch {
+		font-size: 16px;
+	}
 	p {
 		font-size: 12px;
 	}
 	button.ToggleTheme {
-		width: 20px;
-		height: 20px;
-		font-size: 12px;
+		width: 32px;
+		height: 32px;
+		font-size: 14px;
 	}
 	li.TodoItem {
 		font-size: 16px;
-		height: 20px;
 	}
+	li.TodoItemLoading {
+		height: 60px;
+	}
+
 	button.AddTodo {
-		width: 40px;
-		height: 40px;
+		width: 48px;
+		height: 48px;
 		font-size: 16px;
 	}
 }

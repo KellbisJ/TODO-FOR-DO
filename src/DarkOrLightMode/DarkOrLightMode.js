@@ -17,8 +17,8 @@ function DarkOrLightMode({ lightMode, handleLightMode }) {
 			onClick={(e) => {
 				e.preventDefault();
 				handleLightMode(!lightMode);
-				console.log(handleLightMode);
-				console.log(lightMode);
+				// console.log(handleLightMode);
+				// console.log(lightMode);
 			}}>
 			{lightMode ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />}
 		</button>

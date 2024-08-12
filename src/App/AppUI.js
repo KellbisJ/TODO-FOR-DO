@@ -8,6 +8,9 @@ import { TodoSearch } from '../TodoInfoAndSearch/TodoSearch';
 import { TodoList } from '../TodoList/TodoList';
 import { TodoItem } from '../TodoList/TodoItem';
 import { CreateTodoBtn } from '../CreateTodoBtn/CreateTodoBtn';
+import { TodosLoading } from '../TodoList/TodosLoading';
+import { TodosErrors } from '../TodoList/TodosError';
+import { EmptyTodos } from '../TodoList/EmptyTodos';
 
 function AppUI({
 	loading,
@@ -29,15 +32,16 @@ function AppUI({
 
 			<TodoSystem lightMode={lightMode}>
 				<TodoInfoAndSearch>
-					<NumbersTodo completed={completedTodos} total={totalTodos} lightMode={lightMode} />
+					<NumbersTodo completed={completedTodos} total={totalTodos} lightMode={lightMode} loading={loading} />
 					<TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} lightMode={lightMode} />
 				</TodoInfoAndSearch>
 
 				<DarkOrLightMode lightMode={lightMode} handleLightMode={handleLightMode} />
 				<TodoList lightMode={lightMode}>
-					{loading && <p style={{ color: lightMode ? '#282c34' : '#fff' }}>loading...</p>}
-					{error && <p>An error ocurred...</p>}
-					{!loading && !error && searchedTodos.length === 0 && <p>You need to create your first Todo!</p>}
+					{loading && <TodosLoading TodosLoading={loading} lightMode={lightMode} />} {/* Si loading es true, se muestra el componente TodosLoading */}
+					{error && <TodosErrors />} {/* Si error es true, se muestra el componente TodosErrors */}
+					{!loading && !error && searchedTodos.length === 0 && <EmptyTodos />}{' '}
+					{/* Si loading y error son false y searchedTodos es un array vacío, se muestra el componente EmptyTodos */}
 					{searchedTodos.map((todo) => (
 						<TodoItem
 							key={todo.text}

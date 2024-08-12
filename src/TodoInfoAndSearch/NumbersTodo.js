@@ -1,5 +1,5 @@
-function NumbersTodo({ completed, total, lightMode }) {
-	return <h2 className={`NumbersTodo ${lightMode ? 'NumbersTodoLight' : ''}`}>{verifyCompleted(completed, total)}</h2>;
+function NumbersTodo({ completed, total, lightMode, loading }) {
+	return <h2 className={`NumbersTodo ${lightMode ? 'NumbersTodoLight' : ''}`}>{loading ? 'Loading...' : verifyCompleted(completed, total)}</h2>;
 }
 
 function verifyCompleted(completed, total) {

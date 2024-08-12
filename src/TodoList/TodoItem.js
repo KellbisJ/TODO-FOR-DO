@@ -11,7 +11,5 @@ function TodoItem({ text, completed, onComplete, onDelete, lightMode }) {
 		</li>
 	);
 }
-// function deleteTodo() {
-// 	document.querySelector('.TodoItem').remove();
-// }
+
 export { TodoItem };

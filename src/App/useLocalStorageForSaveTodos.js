@@ -21,7 +21,7 @@ function useLocalStorageForSaveTodos(itemName, initialValue) {
 				setLoading(false);
 				setError(true);
 			}
-		}, 500);
+		}, 1700);
 	}, []);
 
 	const saveItemTodos = (newItem) => {
