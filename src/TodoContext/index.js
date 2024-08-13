@@ -5,10 +5,10 @@ const TodoContext = React.createContext();
 
 function TodoProvider({ children }) {
 	const { item: todos, saveItemTodos: saveTodos, loading, error } = useLocalStorageForSaveTodos('TODOS_FOR_DO1', []);
-	console.log(todos);
 	const [searchValue, setSearchValue] = React.useState('');
+	const [openModal, setOpenModal] = React.useState(false);
 
-	const saveThemeInLocalStorage = (lightMode) => localStorage.setItem('LIGHT_MODE', lightMode);
+	const saveThemeInLocalStorage = (lightMode) => localStorage.setItem('LIGHT_MODE', lightMode); // Logica del tema claro y oscuro
 	const getThemeFromLocalStorage = () => localStorage.getItem('LIGHT_MODE') === 'true' || false;
 
 	const [lightMode, setLightMode] = React.useState(getThemeFromLocalStorage);
@@ -63,6 +63,8 @@ function TodoProvider({ children }) {
 				todoUncheck,
 				todoDone,
 				todoDelete,
+				openModal,
+				setOpenModal,
 			}}>
 			{children}
 		</TodoContext.Provider>

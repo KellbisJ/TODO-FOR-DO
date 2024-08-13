@@ -1,3 +1,11 @@
+h1,
+h2,
+p,
+span {
+	margin: 0;
+	padding: 0;
+}
+
 h1 {
 	font-size: 28px;
 	/* color: #219c90; */
@@ -8,7 +16,7 @@ h1 {
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 	letter-spacing: 2px;
 	font-style: italic;
-	margin-top: 12px;
+	margin: 24px;
 	padding: 0 10px;
 }
 .TodoForDoDark {
@@ -31,7 +39,6 @@ h2 {
 	text-wrap: balance;
 }
 p {
-	color: aliceblue;
 	font-size: 18px;
 }
 .NumbersTodo {
@@ -50,9 +57,6 @@ p {
 }
 li {
 	list-style-type: none;
-}
-span {
-	cursor: pointer;
 }
 .lightModeBody {
 	background-color: #f5f5f5;
@@ -178,6 +182,7 @@ li.TodoItem {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
+	height: 80px;
 	border: none;
 }
 li.TodoItemLoading {
@@ -194,6 +199,7 @@ li.TodoItemLight {
 }
 span.todoSuccess {
 	transition: box-shadow 0.3s ease-in-out;
+	cursor: pointer;
 }
 span.todoSuccess:hover {
 	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
@@ -227,6 +233,7 @@ p.todoTextLight {
 
 span.todoConclude {
 	transition: box-shadow 0.3s ease-in-out;
+	cursor: pointer;
 }
 span.todoConclude:hover {
 	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
@@ -245,29 +252,104 @@ span.todoConcludeLoading {
 span.todoConcludeLoadingLight {
 	background-color: #cfd1d4;
 }
-
-button.AddTodo {
+button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* position: absolute; */
-	/* bottom: 10px;
-	right: 10px; */
-	background-color: #eb3678;
+	text-align: center;
+	cursor: pointer;
 	border: none;
+	outline: none;
+}
+button.AddTodo {
+	background-color: #eb3678;
 	color: white;
 	width: 50px;
 	height: 50px;
-	/* width: 50px;
-	height: 50px; */
 	line-height: 50px;
-	text-align: center;
 	text-decoration: none;
 	font-size: 24px;
 	margin-bottom: 12px;
-	cursor: pointer;
+
 	border-radius: 50%;
 }
+button.AddTodo:hover {
+	background-color: #ff5797;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+div.todoModalBackground {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+form.CreateTodoForm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 600px;
+	height: 220px;
+
+	border-radius: 10px;
+	padding: 20px;
+	box-sizing: border-box;
+	position: relative;
+	background-color: #1e2229;
+}
+form.CreateTodoFormLight {
+	background-color: #cfd1d4;
+}
+p.textCreateTodo {
+	color: aliceblue;
+}
+p.textCreateTodoLight {
+	color: #000;
+}
+button.closeModal {
+	position: absolute;
+	font-size: 20px;
+	font-style: italic;
+	font-weight: 600;
+	font-family: system-ui;
+	right: 0;
+	top: 0;
+	background: none;
+	width: 40px;
+	color: #f00;
+	border-radius: 0 10px 0 4px;
+}
+button.closeModal:hover {
+	background-color: #f00;
+	color: #fff;
+}
+input.inputCreateTodo {
+	width: 64%;
+	height: 38px;
+	outline: none;
+	border: 1px solid #aeaeae;
+	border-radius: 8px;
+	margin: 20px 20px 12px 20px;
+	padding: 0 10px;
+	font-size: 16px;
+}
+button.buttonCreateTodo {
+	width: 24%;
+	height: 32px;
+	background-color: #eb3678;
+	border-radius: 8px;
+	font-size: 14px;
+	color: #fff;
+}
+button.buttonCreateTodo:hover {
+	background-color: #ff5797;
+}
+
 /* #1e2229 */
 @media (max-width: 440px) {
 	h1 {
@@ -292,6 +374,7 @@ button.AddTodo {
 	}
 	li.TodoItem {
 		font-size: 16px;
+		height: 60px;
 	}
 	li.TodoItemLoading {
 		height: 60px;
