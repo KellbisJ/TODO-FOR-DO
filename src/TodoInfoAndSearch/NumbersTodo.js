@@ -1,6 +1,16 @@
-function NumbersTodo({ completed, total, lightMode, loading }) {
-	return <h2 className={`NumbersTodo ${lightMode ? 'NumbersTodoLight' : ''}`}>{loading ? 'Loading...' : verifyCompleted(completed, total)}</h2>;
+import React from 'react';
+import { TodoContext } from '../TodoContext/index';
+
+function NumbersTodo() {
+	const { completedTodos, totalTodos, lightMode, loading } = React.useContext(TodoContext);
+	return (
+		<h2 className={`NumbersTodo ${lightMode ? 'NumbersTodoLight' : ''}`}>{loading ? 'Loading...' : verifyCompleted(completedTodos, totalTodos)}</h2>
+	);
 }
+
+// {
+// 	completed, total, lightMode, loading;
+// }
 
 function verifyCompleted(completed, total) {
 	if (completed === 0 && total === 0) {
