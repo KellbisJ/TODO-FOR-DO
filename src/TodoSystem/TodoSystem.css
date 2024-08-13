@@ -293,12 +293,10 @@ form.CreateTodoForm {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 600px;
-	height: 220px;
-
+	width: 36vw;
 	border-radius: 10px;
 	padding: 20px;
-	box-sizing: border-box;
+
 	position: relative;
 	background-color: #1e2229;
 }
@@ -349,6 +347,13 @@ button.buttonCreateTodo {
 button.buttonCreateTodo:hover {
 	background-color: #ff5797;
 }
+span.textRulesTodo {
+	color: #f00;
+	font-size: 12px;
+	max-width: 64%;
+	text-align: center;
+	margin-top: 12px;
+}
 
 /* #1e2229 */
 @media (max-width: 440px) {
@@ -383,6 +388,15 @@ button.buttonCreateTodo:hover {
 	button.AddTodo {
 		width: 48px;
 		height: 48px;
-		font-size: 16px;
+		font-size: 18px;
+	}
+	form.CreateTodoForm {
+		width: 50vw;
+	}
+	input.inputCreateTodo {
+		font-size: 14px;
+	}
+	button.buttonCreateTodo {
+		width: auto;
 	}
 }

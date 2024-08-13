@@ -13,6 +13,10 @@ function TodoProvider({ children }) {
 
 	const [lightMode, setLightMode] = React.useState(getThemeFromLocalStorage);
 
+	const addTodo = (text) => {
+		todos.some((todo) => todo.text === text) ? console.warn('Esta tarea ya existe') : saveTodos([...todos, { text, completed: false }]);
+	};
+
 	const completedTodos = todos ? todos.filter((todo) => !!todo.completed).length : 0;
 
 	const totalTodos = todos ? todos.length : 0;
@@ -65,6 +69,7 @@ function TodoProvider({ children }) {
 				todoDelete,
 				openModal,
 				setOpenModal,
+				addTodo,
 			}}>
 			{children}
 		</TodoContext.Provider>

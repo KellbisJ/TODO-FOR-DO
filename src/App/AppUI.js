@@ -16,7 +16,7 @@ import { Modal } from '../Modal';
 import { AddTodoForm } from '../AddTodoForm/AddTodoForm';
 
 function AppUI() {
-	const { loading, error, lightMode, searchedTodos, todoUncheck, todoDone, todoDelete, openModal, setOpenModal } = React.useContext(TodoContext);
+	const { loading, error, lightMode, searchedTodos, todoUncheck, todoDone, todoDelete, openModal } = React.useContext(TodoContext);
 	return (
 		<>
 			<TodoForDo />
