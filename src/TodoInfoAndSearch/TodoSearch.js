@@ -6,7 +6,7 @@ function TodoSearch() {
 	return (
 		<input
 			className={`TodoSearch ${lightMode ? 'TodoSearchLight' : ''}`}
-			placeholder="Study"
+			placeholder="Buscar tus tareas por hacer"
 			value={searchValue}
 			onChange={(e) => {
 				setSearchValue(e.target.value);

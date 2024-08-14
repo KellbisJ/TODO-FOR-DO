@@ -48,6 +48,7 @@ function TodoProvider({ children }) {
 		newTodos.splice(todoIndex, 1);
 		saveTodos(newTodos);
 	};
+
 	const handleLightMode = (newLightMode) => {
 		saveThemeInLocalStorage(newLightMode);
 		setLightMode(newLightMode);

@@ -1,55 +1,39 @@
 h1,
-h2,
-p,
-span {
-	margin: 0;
-	padding: 0;
-}
-
-h1 {
-	font-size: 28px;
-	/* color: #219c90; */
+h2 {
 	text-align: center;
-	font-family: 'Kode Mono', monospace;
-	font-weight: bold;
+	text-overflow: ellipsis;
+	overflow: hidden;
+
 	text-transform: uppercase;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-	letter-spacing: 2px;
-	font-style: italic;
-	margin: 24px;
-	padding: 0 10px;
+
+	text-wrap: balance;
 }
 .TodoForDoDark {
 	color: #06e899;
+	font-size: 28px;
+	margin: 24px;
+	padding: 0 10px;
+	font-style: italic;
+	letter-spacing: 2px;
 }
 .TodoForDoLight {
 	color: #000000;
 	text-shadow: 2px 2px 4px rgb(0 0 0 / 15%);
 }
-h2 {
-	font-size: 18px;
-	/* color: #219c90; */
-	text-align: center;
-	font-family: 'Kode Mono', monospace;
-	font-weight: bold;
-	text-transform: uppercase;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-	font-style: italic;
-	letter-spacing: 2px;
-	text-wrap: balance;
-}
+
 p {
 	font-size: 18px;
 }
 .NumbersTodo {
-	color: #06e899;
+	font-size: 18px;
+	color: #f5f5f5;
 	padding: 4px 10px;
 	margin: 4px 0px 4px 0px;
 	width: 78%;
 	height: 80px;
-	box-sizing: border-box;
-	text-overflow: ellipsis;
-	overflow: hidden;
+	letter-spacing: 1px;
+	font-family: sans-serif;
 }
 .NumbersTodoLight {
 	color: #000000;
@@ -58,9 +42,7 @@ p {
 li {
 	list-style-type: none;
 }
-.lightModeBody {
-	background-color: #f5f5f5;
-}
+
 .lightModeItem {
 	color: #f5f5f5;
 }
@@ -81,6 +63,7 @@ div.TodoSystem {
 	background-color: #1e2229;
 	border-radius: 24px;
 	position: relative;
+	transition: background-color 0.5s ease;
 }
 div.TodoSystemLight {
 	display: flex;
@@ -103,7 +86,7 @@ div.TodoInfoAndSearch {
 	height: auto;
 }
 input.TodoSearch {
-	width: 78%;
+	width: 74%;
 	border: none;
 	background-color: #282c34;
 	color: aliceblue;
@@ -113,14 +96,12 @@ input.TodoSearch {
 	margin-bottom: 10px;
 	outline: none;
 	box-shadow: none;
+	transition: background-color 0.5s ease;
 }
 input.TodoSearchLight {
 	background-color: #ffffff;
 	color: #282c34;
 }
-/* input.Something::placeholder {
-	color: #999999;
-} */
 
 button.ToggleTheme {
 	display: flex;
@@ -149,15 +130,10 @@ button.ToggleTheme {
 	background-color: #000000;
 	color: #fff;
 }
-
-/* button.ToggleTheme:hover {
-	background-color: #fff;
-	color: #1e2229;
-} */
 ul.TodoList {
 	display: flex;
 	flex-direction: column;
-	width: 78%;
+	width: 68%;
 	height: auto;
 	padding: 0;
 	align-items: center;
@@ -184,6 +160,7 @@ li.TodoItem {
 	width: 100%;
 	height: 80px;
 	border: none;
+	transition: background-color 0.5s ease;
 }
 li.TodoItemLoading {
 	display: flex;
@@ -197,16 +174,39 @@ li.TodoItemLoading {
 li.TodoItemLight {
 	background-color: #ffffff;
 }
-span.todoSuccess {
-	transition: box-shadow 0.3s ease-in-out;
+li.TodoItemComplete {
+	background-color: #06e899;
+}
+input.todoSuccess {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	background-color: rgb(240, 248, 255);
+	border-radius: 20%;
+	border: 2px solid #cfd1d4;
+	position: relative;
 	cursor: pointer;
+	outline: none;
+	box-shadow: none;
 }
-span.todoSuccess:hover {
-	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+
+input.todoSuccess:checked {
+	background-color: #4caf50;
+	border-color: #4caf50;
 }
-span.todoSuccess:active {
-	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+input.todoSuccess:checked::after {
+	content: '\2713'; /* Código Unicode para la "v" */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
 }
+
 span.todoSuccessLoading {
 	display: block;
 	width: 20px;
@@ -220,27 +220,41 @@ span.todoSuccessLoadingLight {
 }
 
 p.todoText {
-	color: aliceblue;
+	display: inline-flex;
+	justify-content: center;
+	color: rgb(240, 248, 255);
 	font-weight: bold;
 	text-overflow: ellipsis;
+	-ms-overflow-style: scrollbar;
+	overflow-x: scroll;
 	white-space: nowrap;
-	overflow: hidden;
-	text-wrap: balance;
+	flex-shrink: 0;
+	width: 600px;
 }
+p.todoText::-webkit-scrollbar {
+	height: 6px;
+}
+p.todoText::-webkit-scrollbar-thumb {
+	background-color: #888;
+	border-radius: 4px;
+}
+
 p.todoTextLight {
 	color: #282c34;
 }
 
 span.todoConclude {
+	font-size: 25px;
 	transition: box-shadow 0.3s ease-in-out;
 	cursor: pointer;
+	color: rgb(0, 0, 0);
+	text-transform: uppercase;
 }
 span.todoConclude:hover {
-	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+	color: rgb(241, 4, 4);
 }
-
-span.todoConclude:active {
-	filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+span.todoConclude:focus {
+	color: rgb(241, 4, 4);
 }
 span.todoConcludeLoading {
 	width: 20px;
@@ -269,7 +283,7 @@ button.AddTodo {
 	line-height: 50px;
 	text-decoration: none;
 	font-size: 24px;
-	margin-bottom: 12px;
+	margin: 12px;
 
 	border-radius: 50%;
 }
@@ -327,7 +341,6 @@ button.closeModal:hover {
 	color: #fff;
 }
 input.inputCreateTodo {
-	width: 64%;
 	height: 38px;
 	outline: none;
 	border: 1px solid #aeaeae;
@@ -337,7 +350,7 @@ input.inputCreateTodo {
 	font-size: 16px;
 }
 button.buttonCreateTodo {
-	width: 24%;
+	width: 160px;
 	height: 32px;
 	background-color: #eb3678;
 	border-radius: 8px;
@@ -345,7 +358,15 @@ button.buttonCreateTodo {
 	color: #fff;
 }
 button.buttonCreateTodo:hover {
-	background-color: #ff5797;
+	background-color: #e93e80;
+}
+button.buttonCreateTodoTransition {
+	animation-name: lightTransition;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate-reverse;
+	animation-timing-function: ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 span.textRulesTodo {
 	color: #f00;
@@ -355,13 +376,45 @@ span.textRulesTodo {
 	margin-top: 12px;
 }
 
-/* #1e2229 */
+.transition {
+	transition: background-color 0.5s ease;
+}
+
+@keyframes lightTransition {
+	0% {
+		background-color: #eb3678;
+	}
+	50% {
+		background-color: #eb4d8a;
+	}
+	75% {
+		background-color: #ff5797;
+	}
+	100% {
+		background-color: #f1ebed;
+		color: #eb3678;
+	}
+}
+
+@media (max-width: 1100px) {
+	p.todoText {
+		width: 300px;
+	}
+}
+@media (max-width: 700px) {
+	p.todoText {
+		width: 160px;
+	}
+}
+
 @media (max-width: 440px) {
-	h1 {
+	.TodoForDoDark {
 		font-size: 18px;
 	}
-	h2 {
-		font-size: 14px;
+	.NumbersTodo {
+		font-size: 10px;
+		height: 50px;
+		width: 70%;
 	}
 	input.Something {
 		font-size: 14px;
@@ -384,6 +437,9 @@ span.textRulesTodo {
 	li.TodoItemLoading {
 		height: 60px;
 	}
+	p.todoText {
+		width: 100px;
+	}
 
 	button.AddTodo {
 		width: 48px;
@@ -394,9 +450,15 @@ span.textRulesTodo {
 		width: 50vw;
 	}
 	input.inputCreateTodo {
+		width: 150px;
 		font-size: 14px;
 	}
 	button.buttonCreateTodo {
-		width: auto;
+		width: 100px;
+	}
+}
+@media (max-width: 440px) {
+	input.TodoSearch {
+		font-size: 12px;
 	}
 }

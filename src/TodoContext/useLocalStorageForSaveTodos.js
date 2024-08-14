@@ -20,16 +20,18 @@ function useLocalStorageForSaveTodos(itemName, initialValue) {
 			} catch (error) {
 				setLoading(false);
 				setError(true);
+				console.log(error);
 			}
 		}, 1700);
 	}, []);
 
 	const saveItemTodos = (newItem) => {
-		const stringifiedTodos2 = JSON.stringify(newItem);
-		localStorage.setItem(itemName, stringifiedTodos2);
+		const stringifiedTodos = JSON.stringify(newItem);
+		localStorage.setItem(itemName, stringifiedTodos);
 
 		setItem(newItem);
 	};
+
 	return {
 		item,
 		saveItemTodos,

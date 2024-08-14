@@ -16,7 +16,7 @@ import { Modal } from '../Modal';
 import { AddTodoForm } from '../AddTodoForm/AddTodoForm';
 
 function AppUI() {
-	const { loading, error, lightMode, searchedTodos, todoUncheck, todoDone, todoDelete, openModal } = React.useContext(TodoContext);
+	const { loading, error, lightMode, searchedTodos, todoUncheck, todoDone, todoDelete, openModal, totalTodos } = React.useContext(TodoContext);
 	return (
 		<>
 			<TodoForDo />
@@ -32,7 +32,7 @@ function AppUI() {
 				<TodoList>
 					{loading && <TodosLoading TodosLoading={loading} lightMode={lightMode} />} {/* Si loading es true, se muestra el componente TodosLoading */}
 					{error && <TodosErrors />} {/* Si error es true, se muestra el componente TodosErrors */}
-					{!loading && !error && searchedTodos.length === 0 && <EmptyTodos />}{' '}
+					{!loading && !error && searchedTodos.length === 0 && totalTodos > 0 && <EmptyTodos />}
 					{/* Si loading y error son false y searchedTodos es un array vacío, se muestra el componente EmptyTodos */}
 					{searchedTodos.map((todo) => (
 						<TodoItem

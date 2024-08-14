@@ -7,11 +7,7 @@ function DarkOrLightMode() {
 	const { lightMode, handleLightMode } = React.useContext(TodoContext);
 	useEffect(() => {
 		const body = document.body;
-		if (lightMode) {
-			body.classList.add('lightModeBody');
-		} else {
-			body.classList.remove('lightModeBody');
-		}
+		lightMode ? body.classList.add('lightModeBody', 'transition') : body.classList.remove('lightModeBody');
 	});
 	return (
 		<button

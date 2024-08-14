@@ -1,5 +1,6 @@
 import React from 'react';
 import { TodoContext } from '../TodoContext/index';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 function AddTodoForm() {
 	const { lightMode, setOpenModal, addTodo } = React.useContext(TodoContext);
@@ -7,9 +8,10 @@ function AddTodoForm() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		if (newTodosValue.length > 0 && newTodosValue.length < 40) {
+		if (newTodosValue.length > 0 && newTodosValue.length < 201) {
 			addTodo(newTodosValue);
 			setNewTodosValue('');
+			setOpenModal(false);
 		}
 	};
 
@@ -17,10 +19,11 @@ function AddTodoForm() {
 		setNewTodosValue(e.target.value);
 	};
 	const onSubmit2 = (e) => {
-		if (e.key === 'Enter' && newTodosValue.length > 0 && newTodosValue.length < 40) {
+		if (e.key === 'Enter' && newTodosValue.length > 0 && newTodosValue.length < 201) {
 			e.preventDefault();
 			addTodo(newTodosValue);
 			setNewTodosValue('');
+			setOpenModal(false);
 		}
 	};
 
