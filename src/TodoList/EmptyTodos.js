@@ -3,7 +3,7 @@ import { TodoContext } from '../TodoContext/index';
 
 function EmptyTodos() {
 	const { lightMode } = React.useContext(TodoContext);
-	return <p className={`${lightMode ? 'darkModeItem' : 'lightModeItem'}`}>No se han encontrado todos</p>;
+	return <p className={`${lightMode ? 'darkModeItem' : 'lightModeItem'}`}>No se han encontrado actividades</p>;
 	// <p>You need to create your first Todo!</p>;
 }
 
