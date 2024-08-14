@@ -221,7 +221,7 @@ span.todoSuccessLoadingLight {
 
 p.todoText {
 	display: inline-flex;
-	justify-content: center;
+	justify-content: space-around;
 	color: rgb(240, 248, 255);
 	font-weight: bold;
 	text-overflow: ellipsis;
