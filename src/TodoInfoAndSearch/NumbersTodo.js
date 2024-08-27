@@ -1,8 +1,6 @@
 import React from 'react';
-import { TodoContext } from '../TodoContext/index';
 
-function NumbersTodo() {
-	const { completedTodos, totalTodos, lightMode, loading } = React.useContext(TodoContext);
+function NumbersTodo({ completedTodos, totalTodos, lightMode, loading }) {
 	return (
 		<h2 className={`NumbersTodo ${lightMode ? 'NumbersTodoLight' : ''}`}>{loading ? 'Loading...' : verifyCompleted(completedTodos, totalTodos)}</h2>
 	);

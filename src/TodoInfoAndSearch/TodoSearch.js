@@ -1,8 +1,6 @@
 import React from 'react';
-import { TodoContext } from '../TodoContext/index';
 
-function TodoSearch() {
-	const { searchValue, setSearchValue, lightMode } = React.useContext(TodoContext);
+function TodoSearch({ searchValue, setSearchValue, lightMode }) {
 	return (
 		<input
 			className={`TodoSearch ${lightMode ? 'TodoSearchLight' : ''}`}

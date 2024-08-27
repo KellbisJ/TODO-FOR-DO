@@ -16,15 +16,28 @@ import { Modal } from '../Modal';
 import { AddTodoForm } from '../AddTodoForm/AddTodoForm';
 
 function AppUI() {
-	const { loading, error, lightMode, searchedTodos, todoUncheck, todoDone, todoDelete, openModal, totalTodos } = React.useContext(TodoContext);
+	const {
+		loading,
+		error,
+		lightMode,
+		searchedTodos,
+		todoUncheck,
+		todoDone,
+		todoDelete,
+		openModal,
+		totalTodos,
+		completedTodos,
+		searchValue,
+		setSearchValue,
+	} = React.useContext(TodoContext);
 	return (
 		<>
 			<TodoForDo />
 
 			<TodoSystem>
 				<TodoInfoAndSearch>
-					<NumbersTodo />
-					<TodoSearch />
+					<NumbersTodo totalTodos={totalTodos} completedTodos={completedTodos} lightMode={lightMode} loading={loading} />
+					<TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} lightMode={lightMode} />
 				</TodoInfoAndSearch>
 
 				<DarkOrLightMode />
