@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TodoContext } from '../TodoContext/index';
 
-function DarkOrLightMode() {
-	const { lightMode, handleLightMode } = React.useContext(TodoContext);
+function DarkOrLightMode({ lightMode, handleLightMode }) {
 	useEffect(() => {
 		const body = document.body;
 		lightMode ? body.classList.add('lightModeBody', 'transition') : body.classList.remove('lightModeBody');

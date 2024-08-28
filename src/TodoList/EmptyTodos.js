@@ -1,8 +1,6 @@
 import React from 'react';
-import { TodoContext } from '../TodoContext/index';
 
-function EmptyTodos() {
-	const { lightMode } = React.useContext(TodoContext);
+function EmptyTodos({ lightMode }) {
 	return <p className={`${lightMode ? 'darkModeItem' : 'lightModeItem'}`}>No se han encontrado resultados</p>;
 	// <p>You need to create your first Todo!</p>;
 }

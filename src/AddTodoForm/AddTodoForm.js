@@ -1,9 +1,7 @@
 import React from 'react';
-import { TodoContext } from '../TodoContext/index';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 
-function AddTodoForm() {
-	const { lightMode, setOpenModal, addTodo } = React.useContext(TodoContext);
+function AddTodoForm({ lightMode, setOpenModal, addTodo }) {
 	const [newTodosValue, setNewTodosValue] = React.useState('');
 
 	const onSubmit = (e) => {

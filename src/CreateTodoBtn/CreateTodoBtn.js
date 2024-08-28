@@ -1,8 +1,6 @@
 import React from 'react';
-import { TodoContext } from '../TodoContext/index';
 
-function CreateTodoBtn() {
-	const { openModal, setOpenModal, totalTodos } = React.useContext(TodoContext);
+function CreateTodoBtn({ openModal, setOpenModal, totalTodos }) {
 	return (
 		<button
 			className={`AddTodo ${totalTodos === 0 ? 'buttonCreateTodoTransition' : ''}`}

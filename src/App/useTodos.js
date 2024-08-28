@@ -1,9 +1,7 @@
 import React from 'react';
 import { useLocalStorageForSaveTodos } from './useLocalStorageForSaveTodos';
 
-const TodoContext = React.createContext();
-
-function TodoProvider({ children }) {
+function useTodos() {
 	const { item: todos, saveItemTodos: saveTodos, loading, error } = useLocalStorageForSaveTodos('TODOS_FOR_DO1', []);
 	const [searchValue, setSearchValue] = React.useState('');
 	const [openModal, setOpenModal] = React.useState(false);
@@ -53,31 +51,26 @@ function TodoProvider({ children }) {
 		saveThemeInLocalStorage(newLightMode);
 		setLightMode(newLightMode);
 	};
-	return (
-		<TodoContext.Provider
-			value={{
-				loading,
-				error,
-				completedTodos,
-				totalTodos,
-				lightMode,
-				searchValue,
-				setSearchValue,
-				handleLightMode,
-				searchedTodos,
-				todoUncheck,
-				todoDone,
-				todoDelete,
-				openModal,
-				setOpenModal,
-				addTodo,
-			}}>
-			{children}
-		</TodoContext.Provider>
-	);
+	return {
+		loading,
+		error,
+		completedTodos,
+		totalTodos,
+		lightMode,
+		searchValue,
+		setSearchValue,
+		handleLightMode,
+		searchedTodos,
+		todoUncheck,
+		todoDone,
+		todoDelete,
+		openModal,
+		setOpenModal,
+		addTodo,
+	};
 }
 
-export { TodoContext, TodoProvider };
+export { useTodos };
 
 // const defaultTodos = [
 // 	{ text: 'Organizar el cuarto', completed: false },
