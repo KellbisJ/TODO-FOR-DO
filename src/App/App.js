@@ -45,12 +45,16 @@ function App() {
 					<TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} lightMode={lightMode} />
 				</TodoInfoAndSearch>
 
-				<TodoList>
-					{loading && <TodosLoading TodosLoading={loading} lightMode={lightMode} />} {/* Si loading es true, se muestra el componente TodosLoading */}
-					{error && <TodosErrors />} {/* Si error es true, se muestra el componente TodosErrors */}
-					{!loading && !error && searchedTodos.length === 0 && totalTodos > 0 && <EmptyTodos lightMode={lightMode} />}
-					{/* Si loading y error son false y searchedTodos es un array vacío, se muestra el componente EmptyTodos */}
-					{searchedTodos.map((todo) => (
+				<TodoList
+					lightMode={lightMode}
+					error={error}
+					loading={loading}
+					searchedTodos={searchedTodos}
+					totalTodos={totalTodos}
+					onError={() => <TodosErrors />}
+					onLoading={() => <TodosLoading TodosLoading={loading} lightMode={lightMode} />}
+					onEmptyTodos={() => <EmptyTodos lightMode={lightMode} />}
+					render={(todo) => (
 						<TodoItem
 							key={todo.text}
 							text={todo.text}
@@ -67,8 +71,9 @@ function App() {
 							}}
 							lightMode={lightMode}
 						/>
-					))}
-				</TodoList>
+					)}
+				/>
+
 				<CreateTodoBtn openModal={openModal} setOpenModal={setOpenModal} totalTodos={totalTodos} />
 				{openModal && (
 					<Modal>
