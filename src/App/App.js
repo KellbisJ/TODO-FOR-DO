@@ -35,8 +35,6 @@ function App() {
 	} = useTodos();
 	return (
 		<>
-			<DarkOrLightMode lightMode={lightMode} handleLightMode={handleLightMode} />
-
 			<TodoForDo lightMode={lightMode} />
 
 			<TodoSystem lightMode={lightMode}>
@@ -44,6 +42,8 @@ function App() {
 					<NumbersTodo totalTodos={totalTodos} completedTodos={completedTodos} lightMode={lightMode} loading={loading} />
 					<TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} lightMode={lightMode} />
 				</TodoInfoAndSearch>
+
+				<DarkOrLightMode lightMode={lightMode} handleLightMode={handleLightMode} />
 
 				<TodoList
 					lightMode={lightMode}
@@ -54,7 +54,26 @@ function App() {
 					onError={() => <TodosErrors />}
 					onLoading={() => <TodosLoading TodosLoading={loading} lightMode={lightMode} />}
 					onEmptyTodos={() => <EmptyTodos lightMode={lightMode} />}
-					render={(todo) => (
+					// render={(todo) => (
+					// 	<TodoItem
+					// 		key={todo.text}
+					// 		text={todo.text}
+					// 		completed={todo.completed}
+					// 		onComplete={() => {
+					// 			if (todo.completed === true) {
+					// 				todoUncheck(todo.text);
+					// 			} else {
+					// 				todoDone(todo.text);
+					// 			}
+					// 		}}
+					// 		onDelete={() => {
+					// 			todoDelete(todo.text);
+					// 		}}
+					// 		lightMode={lightMode}
+					// 	/>
+					// )}
+				>
+					{(todo) => (
 						<TodoItem
 							key={todo.text}
 							text={todo.text}
@@ -72,7 +91,7 @@ function App() {
 							lightMode={lightMode}
 						/>
 					)}
-				/>
+				</TodoList>
 
 				<CreateTodoBtn openModal={openModal} setOpenModal={setOpenModal} totalTodos={totalTodos} />
 				{openModal && (

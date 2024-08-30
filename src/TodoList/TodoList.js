@@ -1,6 +1,7 @@
 import React from 'react';
 
 function TodoList(props) {
+	const renderFunc = props.children || props.render;
 	return (
 		<ul className="TodoList">
 			{props.error && props.onError()}
@@ -8,9 +9,7 @@ function TodoList(props) {
 
 			{!props.loading && !props.error && props.searchedTodos.length === 0 && props.totalTodos > 0 && props.onEmptyTodos()}
 
-			{props.searchedTodos.map(props.render)}
-
-			{props.children}
+			{props.searchedTodos.map(renderFunc)}
 		</ul>
 	);
 }
