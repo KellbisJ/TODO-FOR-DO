@@ -14,7 +14,7 @@ import { TodosErrors } from '../TodoList/TodosError';
 import { EmptyTodos } from '../TodoList/EmptyTodos';
 import { Modal } from '../Modal';
 import { AddTodoForm } from '../AddTodoForm/AddTodoForm';
-import { ChangeAlertwithStorageListener } from '../ChangeAlert/index';
+import { ChangeAlert } from '../ChangeAlert/index';
 
 function App() {
 	const {
@@ -102,7 +102,7 @@ function App() {
 						<AddTodoForm setOpenModal={setOpenModal} addTodo={addTodo} lightMode={lightMode} />
 					</Modal>
 				)}
-				<ChangeAlertwithStorageListener SynchronizedTodos={SynchronizedTodos} loading={loading} setLoading={setLoading} />
+				<ChangeAlert SynchronizedTodos={SynchronizedTodos} loading={loading} setLoading={setLoading} />
 			</TodoSystem>
 		</>
 	);
