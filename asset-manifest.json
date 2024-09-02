@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TODO-FOR-DO/static/css/main.af9c3e00.css",
+    "main.js": "/TODO-FOR-DO/static/js/main.fa6cc831.js",
+    "index.html": "/TODO-FOR-DO/index.html",
+    "main.af9c3e00.css.map": "/TODO-FOR-DO/static/css/main.af9c3e00.css.map",
+    "main.fa6cc831.js.map": "/TODO-FOR-DO/static/js/main.fa6cc831.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.af9c3e00.css",
+    "static/js/main.fa6cc831.js"
+  ]
+}
