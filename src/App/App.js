@@ -14,10 +14,12 @@ import { TodosErrors } from '../TodoList/TodosError';
 import { EmptyTodos } from '../TodoList/EmptyTodos';
 import { Modal } from '../Modal';
 import { AddTodoForm } from '../AddTodoForm/AddTodoForm';
+import { ChangeAlertwithStorageListener } from '../ChangeAlert/index';
 
 function App() {
 	const {
 		loading,
+		setLoading,
 		error,
 		lightMode,
 		handleLightMode,
@@ -32,6 +34,7 @@ function App() {
 		setSearchValue,
 		setOpenModal,
 		addTodo,
+		SynchronizedTodos,
 	} = useTodos();
 	return (
 		<>
@@ -93,12 +96,13 @@ function App() {
 					)}
 				</TodoList>
 
-				<CreateTodoBtn openModal={openModal} setOpenModal={setOpenModal} totalTodos={totalTodos} />
+				<CreateTodoBtn openModal={openModal} setOpenModal={setOpenModal} totalTodos={totalTodos} loading={loading} />
 				{openModal && (
 					<Modal>
 						<AddTodoForm setOpenModal={setOpenModal} addTodo={addTodo} lightMode={lightMode} />
 					</Modal>
 				)}
+				<ChangeAlertwithStorageListener SynchronizedTodos={SynchronizedTodos} loading={loading} setLoading={setLoading} />
 			</TodoSystem>
 		</>
 	);

@@ -9,6 +9,9 @@ h2 {
 
 	text-wrap: balance;
 }
+.dissapear {
+	display: none;
+}
 .TodoForDoDark {
 	color: #06e899;
 	font-size: 28px;
@@ -376,6 +379,19 @@ span.textRulesTodo {
 	margin-top: 12px;
 }
 
+button.ChangeAlertButton {
+	width: 160px;
+	height: 60px;
+	font-size: 16px;
+	text-decoration: none;
+	border-radius: 8px;
+	background-color: #06e899;
+	color: #fff;
+	margin: 12px;
+	font-weight: bold;
+	text-wrap: balance;
+}
+
 .transition {
 	transition: background-color 0.5s ease;
 }
@@ -456,8 +472,18 @@ span.textRulesTodo {
 	button.buttonCreateTodo {
 		width: 100px;
 	}
+	button.ChangeAlertButton {
+		width: 30vw;
+		height: 10vw;
+		font-size: 12px;
+		text-decoration: none;
+		border-radius: 8px;
+		background-color: #06e899;
+		color: #fff;
+		margin: 12px;
+	}
 }
-@media (max-width: 440px) {
+@media (max-width: 340px) {
 	input.TodoSearch {
 		font-size: 12px;
 	}
