@@ -1,10 +1,13 @@
 import React from 'react';
 
 function useLocalStorageForSaveTodos(itemName, initialValue) {
-	const [SynchronizedItem, setSynchronizedItem] = React.useState(true);
-	const [item, setItem] = React.useState(initialValue);
-	const [loading, setLoading] = React.useState(true);
-	const [error, setError] = React.useState(false);
+	const [state, dispatch] = React.useReducer(reducer, initialState(initialValue));
+	const { synchronizedItem, item, loading, error } = state;
+
+	const isError = (error) => dispatch({ type: actionTypes.error, payload: error });
+	const isSuccess = (item) => dispatch({ type: actionTypes.success, payload: item });
+	const saveTodos = (item) => dispatch({ type: actionTypes.save, payload: item });
+	const synchronizedItems = () => dispatch({ type: actionTypes.getSynchronizedItem });
 
 	React.useEffect(() => {
 		setTimeout(() => {
@@ -15,29 +18,26 @@ function useLocalStorageForSaveTodos(itemName, initialValue) {
 				if (todoItem) {
 					parsedItemTodos = JSON.parse(todoItem);
 				}
-
-				setItem(parsedItemTodos);
-				setLoading(false);
+				isSuccess(parsedItemTodos);
 			} catch (error) {
-				setLoading(false);
-				setError(true);
+				isError(error);
 				console.log(error);
 			}
 		}, 1700);
-	}, [SynchronizedItem]);
+	}, [synchronizedItem]);
 
 	const saveItemTodos = (newItem) => {
-		const stringifiedTodos = JSON.stringify(newItem);
-		localStorage.setItem(itemName, stringifiedTodos);
-
-		setItem(newItem);
-		setSynchronizedItem(true);
+		try {
+			const stringifiedTodos = JSON.stringify(newItem);
+			localStorage.setItem(itemName, stringifiedTodos);
+			saveTodos(newItem);
+		} catch (error) {
+			isError(error);
+		}
 	};
 
 	const getSynchronizedItem = () => {
-		setLoading(true);
-		setSynchronizedItem(false);
-		// setSynchronizedItem(true);
+		synchronizedItems();
 	};
 	return {
 		item,
@@ -48,8 +48,45 @@ function useLocalStorageForSaveTodos(itemName, initialValue) {
 	};
 }
 
-// Temas a solucionar:
-// - Despues de actualizar y aplicar los cambios mas de una vez se queda cargando y no avanza ni muestra lo actualizado.
-// - Recordar que tengo que leer mi codigo detalladamente para comprenderlo e incluso pedir ayuda a la IA, repasar conceptos como useState, useEffect, localStorage, render props, render functions, HOF, HOC etc.
+const initialState = ({ initialValue }) => ({
+	synchronizedItem: true,
+	item: initialValue,
+	loading: true,
+	error: false,
+});
+
+const actionTypes = {
+	error: 'ERROR',
+	success: 'SUCCESS',
+	save: 'SAVE',
+	getSynchronizedItem: 'GET_SYNCHRONIZED_ITEM',
+};
+const reducerObject = (state, payload) => ({
+	[actionTypes.error]: {
+		...state,
+		error: true,
+	},
+	[actionTypes.success]: {
+		...state,
+		error: false,
+		loading: false,
+		synchronizedItem: true,
+		item: payload,
+	},
+	[actionTypes.save]: {
+		...state,
+		item: payload,
+	},
+	[actionTypes.getSynchronizedItem]: {
+		...state,
+		synchronizedItem: false,
+		loading: true,
+		item: payload,
+	},
+});
+
+const reducer = (state, action) => {
+	return reducerObject(state, action.payload)[action.type] || state;
+};
 
 export { useLocalStorageForSaveTodos };
